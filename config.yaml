@@ -1,0 +1,39 @@
+parsers:
+  investment:
+    columns:
+      date_op: "Fechas|Operación"
+      date_liq: "Fechas|Liquidación"
+      op_num: "Operación|Operación"
+      op_type: "Operación|Operación.1"
+      isin: "ISIN|ISIN"
+      quantity: "Títulos/NOMINAL|Títulos/NOMINAL"
+      currency: "Divisa|Divisa"
+      price: "Precio Neto|Precio Neto"
+      amount: "Importe neto|Importe neto"
+    mappings:
+      buy:
+        - "SUSCRIPCION"
+        - "SUSCR.POR TRASPASO E"
+        - "SUSCR.POR TRASPASO I"
+        - "ALTA IIC SWITCH"
+      sell:
+        - "REEMB.POR TRASPASO E"
+        - "REEMB.POR TRASPASO I"
+        - "BAJA IIC SWITCH"
+        - "REEMBOLSO"
+  pension:
+    columns:
+      date_op: "Fechas|Operación"
+      date_liq: "Fechas|Liquidación"
+      op_num: "Operación|Operación"
+      op_type: "Operación|Operación.1"
+      isin: "ISIN|ISIN"
+      quantity: "Títulos/NOMINAL|Títulos/NOMINAL"
+      currency: "Divisa|Divisa"
+      price: "Precio Neto|Precio Neto"
+      amount: "Importe neto|Importe neto"
+    mappings:
+      buy:
+        - "APORTACION P.P."
+        - "TRASPASO P.P. ENTRADA"
+      sell: []

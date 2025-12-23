@@ -2,11 +2,15 @@
 
 This tool automates the conversion of Inversis investment fund and pension plan export files (`.xls` format) into CSV files compatible with [Portfolio Performance](https://www.portfolio-performance.info/).
 
-## Features
+## Key Features
 
 - **Automatic File Detection**: Distinguishes between standard investment funds and pension plans based on the filename (checks for 'pp' suffix).
-- **Inheritance-based Architecture**: Modular design for easy extension to other file formats.
-- **Robust Transformation**: Handles HTML-based XLS exports, MultiIndex columns, and normalized date formats.
+- **Precision Recovery**:
+    - **Pension Plans**: Recalculates shares using `Amount / Price` to recover fractional digits truncated in Inversis reports.
+    - **Investment Funds**: Uses original reported quantities to maintain consistency.
+- **Differentiated Logic**: Correctly handles "Importe neto" as the source of truth for all cash flows.
+- **Signed Execution Summary**: Displays a professional summary after each file, correctly subtracting sales/transfers and showing only active positions.
+- **Dynamic Configuration**: All column mappings and operation types are externalized in `config.yaml`.
 - **Portfolio Performance Ready**: Generates CSVs with Spanish locale compatibility (`;` separator, `,` decimal).
 
 ## Project Structure
@@ -21,8 +25,9 @@ This tool automates the conversion of Inversis investment fund and pension plan 
 │       ├── investment_parser.py
 │       └── pension_parser.py
 ├── tests/                # Automated unit tests
+├── config.yaml           # External configuration for columns and operations
 ├── main.py               # Main application entry point
-└── README.md
+└── requirements.txt      # Dependency list
 ```
 
 ## Setup
@@ -30,7 +35,7 @@ This tool automates the conversion of Inversis investment fund and pension plan 
 1. Ensure you have Python 3.8+ installed.
 2. Install dependencies:
    ```bash
-   pip install pandas lxml openpyxl
+   pip install -r requirements.txt
    ```
 
 ## Usage
@@ -42,7 +47,11 @@ This tool automates the conversion of Inversis investment fund and pension plan 
    ```bash
    python main.py
    ```
-3. Find your converted files in the `output` directory.
+3. Find your converted files in the `output` directory and a detailed summary in the terminal.
+
+## Configuration
+
+You can customize column names and operation types in `config.yaml` without touching the code. This is useful if Inversis changes their export format.
 
 ## Testing
 
